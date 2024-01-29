@@ -24,14 +24,14 @@
 
             var tarea = $("#tarea").val(); // se obtiene el valor del input y se lo asigna a la variable
 
-            e.get("api.php", function(data){
+            e.get("api.php?tarea="+tarea, function(data){ // data es la respuesta de la api
 
                 alert(data); // muestra la respuesta de la api segun lo que se mando mediante el input y el boton en una ventana
 
                 console.log(data); // muestra la respuesta de la api segun lo que se mando mediante el input y el boton en la consola
 
                 $("#txtMensaje").html(data); // muestra la respuesta de la api en el dic que esta dentro del mismo html
-                
+
             });
 
             
