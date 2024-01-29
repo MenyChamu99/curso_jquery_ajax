@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Jquery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <form action="api.php" method="post">
+        Datos a enviar:
+        <input type="text" name="tarea" id="tarea">
+        <br>
+        <input type="button" id="btnEnviar" value="Enviar">
+    </form>
+    <div id="txtMensaje">
+
+    </div>
+
+    <script>
+        $("#btnEnviar").click(function (e) {
+
+            var tarea = $("#tarea").val(); // se obtiene el valor del input y se lo asigna a la variable
+
+            e.get("api.php", function(data){
+
+                alert(data); // muestra la respuesta de la api segun lo que se mando mediante el input y el boton en una ventana
+
+                console.log(data); // muestra la respuesta de la api segun lo que se mando mediante el input y el boton en la consola
+
+                $("#txtMensaje").html(data); // muestra la respuesta de la api en el dic que esta dentro del mismo html
+                
+            });
+
+            
+        });
+    </script>
+    
+</body>
+</html>
