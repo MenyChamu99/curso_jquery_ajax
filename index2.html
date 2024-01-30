@@ -22,15 +22,15 @@
     <script>
         $("#btnEnviar").click(function (e) {
 
-            var tarea = $("#tarea").val(); // se obtiene el valor del input y se lo asigna a la variable
+            var objTarea = $("#tarea").val(); // se obtiene el valor del input y se lo asigna a la variable
 
-            $.get("api.php?tarea="+tarea, function(data){ // data es la respuesta de la api
-
-                alert(data); // muestra la respuesta de la api segun lo que se mando mediante el input y el boton en una ventana
-
-                console.log(data); // muestra la respuesta de la api segun lo que se mando mediante el input y el boton en la consola
-
-                $("#txtMensaje").html(data); // muestra la respuesta de la api en el dic que esta dentro del mismo html
+            $.post("api.php", {
+                tarea: objTarea
+            },
+            function(data){
+                alert(data);
+                console.log(data);
+                $("#txtMensaje").html(data);
 
             });
 
