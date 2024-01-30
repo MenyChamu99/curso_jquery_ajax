@@ -9,6 +9,8 @@
             rel="stylesheet"
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
+            <!-- Jquery CDN -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous"></script>
         />
     </head>
 
@@ -19,7 +21,7 @@
 
             <input type="text" name="tarea" id="tarea">
             <br>
-            <button type="button">Agregar tarea</button>
+            <button id="btnEnviar" type="button">Agregar tarea</button>
 
         </form>
 
@@ -35,5 +37,23 @@
             </li>
         </ul>
 
+        <script>
+            $("#btnEnviar").click(function (e) {
+
+                var objTarea = $("#tarea").val(); // se obtiene el valor del input y se lo asigna a la variable
+
+                $.ajax({
+                    type: "POST",
+                    url: "api.php",
+                    data: {tarea: objTarea},
+                    success: function (resultado) {
+                        alert(resultado);
+                        console.log(resultado);
+                        $("#txtMensaje").html(resultado)
+                    }
+                });
+
+            });
+        </script>
     </body>
 </html>
