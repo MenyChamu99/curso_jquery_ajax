@@ -17,6 +17,9 @@ if(!$conexion->connect_error){
 
 if($_POST){
     echo "se se agrego la tarea: ".$_POST["tarea"];
+    $tarea=$_POST["tarea"];
+    $sql="INSERT INTO tareas (id,tarea,completado) VALUES(NULL, '$tarea', '0');";
+    $conexion->query($sql);
 }
 
 ?>
