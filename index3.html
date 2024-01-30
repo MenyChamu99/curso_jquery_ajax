@@ -24,16 +24,17 @@
 
             var objTarea = $("#tarea").val(); // se obtiene el valor del input y se lo asigna a la variable
 
-            $.post("api.php", {
-                tarea: objTarea
-            },
-            function(data){
-                alert(data);
-                console.log(data);
-                $("#txtMensaje").html(data);
-
+            $.ajax({
+                type: "GET",
+                url: "api.php",
+                data: {tarea: objTarea},
+                dataType: "json", // se puede dejar en blanco, si se deja el tipo json no saltara la alerta, ni se mostrara el resultado en la consola ni en el div 
+                success: function (resultado) {
+                    alert(resultado);
+                    console.log(resultado);
+                    $("#txtMensaje").html(resultado)
+                }
             });
-
             
         });
     </script>
