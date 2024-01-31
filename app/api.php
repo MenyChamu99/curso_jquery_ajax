@@ -9,17 +9,28 @@ $basededatos="app";
 // conexion a la base de datos
 $conexion = new mysqli($servidor, $usuario, $password, $basededatos);
 
-if(!$conexion->connect_error){
-    echo "Conexión establecida";
-}else{
+if($conexion->connect_error){
     print_r($conexion->connect_error);
 }
 
+//recepciona las tareas
 if($_POST){
     echo "se se agrego la tarea: ".$_POST["tarea"];
     $tarea=$_POST["tarea"];
     $sql="INSERT INTO tareas (id,tarea,completado) VALUES(NULL, '$tarea', '0');";
     $conexion->query($sql);
+}
+
+// mostrar las tareas de la base datos
+$sql = "SELECT * FROM tareas";
+$resultado = $conexion->query($sql); // aqui se corre la consulta a la base de datos para traer las tareas que se tienen en esta
+
+if($resultado->num_rows>0){ // Si eñ numero de renglones es mayor que 0 quiere decir que si existen registros
+    $tareas = array();
+    while($fila = $resultado->fetch_assoc()){ // aqui se guardan los registros por cada columna de la tabla gracias al metodo fetch_assoc()
+        $tareas[] = $fila;
+    }
+    print_r($tareas);
 }
 
 ?>
