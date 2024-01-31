@@ -38,22 +38,42 @@
         </ul>
 
         <script>
-            $("#btnEnviar").click(function (e) {
+            $(document).ready(function(){
 
-                var objTarea = $("#tarea").val(); // se obtiene el valor del input y se lo asigna a la variable
+                cargarTareas();
 
-                $.ajax({
-                    type: "POST",
-                    url: "api.php",
-                    data: {tarea: objTarea},
-                    success: function (resultado) {
-                        alert(resultado);
-                        console.log(resultado);
-                        $("#txtMensaje").html(resultado)
-                    }
+                $("#btnEnviar").click(function (e) {
+
+                    var objTarea = $("#tarea").val(); // se obtiene el valor del input y se lo asigna a la variable
+
+                    $.ajax({
+                        type: "POST",
+                        url: "api.php",
+                        data: {tarea: objTarea},
+                        success: function (resultado) {
+                            alert(resultado);
+                            console.log(resultado);
+                            $("#txtMensaje").html(resultado)
+                        }
+                    });
+
                 });
 
+                function cargarTareas(){
+
+                    $.ajax({
+                        type: "POST",
+                        url: "api.php",
+                        data: {accion: "leer"},
+                        success: function (resultado) {
+                            alert(resultado);
+                            console.log(resultado);
+                        }
+                    });
+
+                }
             });
+            
         </script>
     </body>
 </html>

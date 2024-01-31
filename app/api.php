@@ -30,7 +30,7 @@ if($resultado->num_rows>0){ // Si eñ numero de renglones es mayor que 0 quiere 
     while($fila = $resultado->fetch_assoc()){ // aqui se guardan los registros por cada columna de la tabla gracias al metodo fetch_assoc()
         $tareas[] = $fila;
     }
-    print_r($tareas);
+    echo json_encode(array('success'=>true, 'datos'=>$tareas));
 }
 
 ?>
