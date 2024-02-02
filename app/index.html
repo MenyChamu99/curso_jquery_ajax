@@ -25,7 +25,7 @@
 
         </form>
 
-        <ul>
+        <ul id="tareas">
             <li>Hacer una aplicaci&oacute;n con JQuery 
                 <input type="button" value="x"/> <input type="button" value="&#10003"/>
             </li>
@@ -54,6 +54,8 @@
                             alert(resultado);
                             console.log(resultado);
                             $("#txtMensaje").html(resultado)
+
+                            cargarTareas();
                         }
                     });
 
@@ -67,10 +69,16 @@
                         data: {accion: "leer"},
                         success: function (resultado) {
 
+                            var lstareas = $("#tareas");
+                            lstareas.empty(); //aqui se vacia la lista para poder mas delante volver a llenarla
                             // sirve para leer dato por dato de los resultados obtenidos osea las tareas cargadas (en formato JSON)
                             $.each(resultado.datos, function (index, tarea) { 
                                  
                                 console.log(tarea);
+
+                                var lista = $("<li></li>").text(tarea.tarea); // aqui cada valor de los datos que se regresan de resultado se agregan en la variable lista
+
+                                lstareas.append(lista);
                             });
 
                         }

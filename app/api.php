@@ -16,10 +16,10 @@ $accion = $_POST["accion"];
 
 //recepciona las tareas
 if($accion == "agregar"){
-    echo "se se agrego la tarea: ".$_POST["tarea"];
     $tarea=$_POST["tarea"];
     $sql="INSERT INTO tareas (id,tarea,completado) VALUES(NULL, '$tarea', '0');";
     $conexion->query($sql);
+    echo json_encode(array('success'=>true, 'datos'=>"se se agrego la tarea"));
 }
 
 if($accion == "leer"){
