@@ -66,8 +66,13 @@
                         url: "api.php",
                         data: {accion: "leer"},
                         success: function (resultado) {
-                            alert(resultado);
-                            console.log(resultado);
+
+                            // sirve para leer dato por dato de los resultados obtenidos osea las tareas cargadas (en formato JSON)
+                            $.each(resultado.datos, function (index, tarea) { 
+                                 
+                                console.log(tarea);
+                            });
+
                         }
                     });
 

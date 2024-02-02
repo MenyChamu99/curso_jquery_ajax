@@ -1,5 +1,5 @@
 <?php
-
+header("Content-Type: application/json");
 // datos de la base de datos
 $servidor="localhost";
 $usuario="root";
