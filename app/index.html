@@ -51,11 +51,11 @@
                         url: "api.php",
                         data: {accion: "agregar", tarea: objTarea},
                         success: function (resultado) {
-                            alert(resultado);
                             console.log(resultado);
                             $("#txtMensaje").html(resultado)
 
                             cargarTareas();
+                            $("#tarea").val("");
                         }
                     });
 
@@ -77,6 +77,23 @@
                                 console.log(tarea);
 
                                 var lista = $("<li></li>").text(tarea.tarea); // aqui cada valor de los datos que se regresan de resultado se agregan en la variable lista
+
+                                // crear las variables para los botones
+                                var btnBorrar = $("<button></button>").text("X");
+                                btnBorrar.on("click", function(){
+                                    alert(tarea.id);
+                                });
+
+                                var btnCompletar = $("<button></button>").html("&#10003");
+                                btnCompletar.on("click", function(){
+                                    alert(tarea.id);
+                                });
+
+                                // agregar los botones a cada renglon
+                                lista.append(" - ");
+                                lista.append(btnCompletar);
+                                lista.append(" - ");
+                                lista.append(btnBorrar);
 
                                 lstareas.append(lista);
                             });
